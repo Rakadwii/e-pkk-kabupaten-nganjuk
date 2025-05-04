@@ -23,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   String? roleBidang;
   String? fullName = "User";
 
+  int _selectedIndex = 0;
+
   @override
   void initState() {
     super.initState();
-    // role = Get.arguments['role'] ?? 'Tidak diketahui';
-    // print('Role Home: $role');
     loadUserData();
   }
 
@@ -39,9 +39,27 @@ class _HomeScreenState extends State<HomeScreen> {
         role = user.role?.name ?? 'Tidak diketahui';
         roleBidang = user.organization?.name;
       });
-      print('Name User Home : $fullName');
-      print('Role Home: $role');
-      print('Role Bidang Home: $roleBidang');
+    }
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        // Sudah di Beranda
+        break;
+      case 1:
+        Get.toNamed(Routes.RIWAYAT);
+        break;
+      case 2:
+        Get.toNamed(Routes.PENGUMUMAN);
+        break;
+      case 3:
+        Get.toNamed(Routes.AKUN);
+        break;
     }
   }
 
@@ -68,32 +86,32 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 32.h),
                       if (roleBidang == 'Laporan Umum') ...[
                         CardButtonActions(
-                        backroundColor: ButtonActionsColors.fillLaporan,
-                        strokeColor: ButtonActionsColors.strokeLaporan,
-                        titleText: 'Upload Laporan Umum',
-                        subTitle: 'upload laporan umum PKK disini',
-                        imageAssets: 'assets/images/ic_report.png',
-                        onTab: () {
-                          Get.toNamed(Routes.UPLOAD_LAPORAN, arguments: {
-                            'role': role,
-                            'role_bidang': roleBidang,
-                          });
-                        },
-                      ),
-                      ] else ... [
+                          backroundColor: ButtonActionsColors.fillLaporan,
+                          strokeColor: ButtonActionsColors.strokeLaporan,
+                          titleText: 'Upload Laporan Umum',
+                          subTitle: 'upload laporan umum PKK disini',
+                          imageAssets: 'assets/images/ic_report.png',
+                          onTab: () {
+                            Get.toNamed(Routes.UPLOAD_LAPORAN, arguments: {
+                              'role': role,
+                              'role_bidang': roleBidang,
+                            });
+                          },
+                        ),
+                      ] else ...[
                         CardButtonActions(
-                        backroundColor: ButtonActionsColors.fillLaporan,
-                        strokeColor: ButtonActionsColors.strokeLaporan,
-                        titleText: 'Upload Laporan',
-                        subTitle: 'upload laporan PKK disini',
-                        imageAssets: 'assets/images/ic_report.png',
-                        onTab: () {
-                          Get.toNamed(Routes.UPLOAD_LAPORAN, arguments: {
-                            'role': role,
-                            'role_bidang': roleBidang,
-                          });
-                        },
-                      ),
+                          backroundColor: ButtonActionsColors.fillLaporan,
+                          strokeColor: ButtonActionsColors.strokeLaporan,
+                          titleText: 'Upload Laporan',
+                          subTitle: 'upload laporan PKK disini',
+                          imageAssets: 'assets/images/ic_report.png',
+                          onTab: () {
+                            Get.toNamed(Routes.UPLOAD_LAPORAN, arguments: {
+                              'role': role,
+                              'role_bidang': roleBidang,
+                            });
+                          },
+                        ),
                       ],
                       SizedBox(height: 14.h),
                       CardButtonActions(
@@ -102,7 +120,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         titleText: 'Upload Galeri',
                         subTitle: 'upload galeri kegiatan PKK disini',
                         imageAssets: 'assets/images/ic_gallery.png',
-                        onTab: () {},
+                        onTab: () {
+                          Get.toNamed(Routes.UPLOAD_GALERI);
+                        },
                       ),
                       SizedBox(height: 32.h),
                       WidgetTextPengumuman(
@@ -135,6 +155,31 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Riwayat',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.campaign),
+            label: 'Pengumuman',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Akun',
+          ),
+        ],
       ),
     );
   }

@@ -1,0 +1,2 @@
+C:/e-pkk/epkk-kabupaten-nganjuk/android/app/.cxx/Debug/2cm59p2z/x86/CMakeFiles/edit_cache.dir
+C:/e-pkk/epkk-kabupaten-nganjuk/android/app/.cxx/Debug/2cm59p2z/x86/CMakeFiles/rebuild_cache.dir

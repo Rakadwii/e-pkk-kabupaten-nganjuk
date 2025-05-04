@@ -75,6 +75,8 @@ class UserData {
   final Role? role;
   final Organization? organization;
 
+  var address;
+
   UserData({
     required this.id,
     required this.fullName,
