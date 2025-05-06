@@ -5,6 +5,8 @@ import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class PendidikanKetrampilan1Screen extends StatelessWidget {
@@ -100,7 +102,13 @@ class PendidikanKetrampilan1Screen extends StatelessWidget {
             text: 'Lanjut',
             textColor: Colors.white,
             onPressed: () {
-              Navigator.pushNamed(context, '/pendidikan2');
+              Get.toNamed('/pendidikan2', arguments: {
+                'jumlahKelompokKerja': butaHurufController.text,
+                'paketA1': paketAKelController.text,
+                'paketA2': paketAWargaController.text,
+                'paketB1': paketBKelController.text,
+                'paketB2': paketBWargaController.text,
+              });
             },
           ),
         ),

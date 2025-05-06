@@ -5,6 +5,7 @@ import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class PendidikanKetrampilan3Screen extends StatelessWidget {
@@ -34,6 +35,7 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Indikator langkah
               Row(
                 children: List.generate(5, (index) {
                   return Expanded(
@@ -49,6 +51,7 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
                 }),
               ),
               SizedBox(height: 32.h),
+
               TypographyStyles.bodyCaptionSemiBold(
                 'BKP',
                 color: TextColors.grey900,
@@ -69,7 +72,7 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
               InputFormField(
                 controller: apeController,
                 hintText: 'Masukkan jumlah',
-                label: 'jumlah APE (SET)',
+                label: 'Jumlah APE (SET)',
               ),
               SizedBox(height: 20.h),
               InputFormField(
@@ -78,11 +81,13 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
                 label: 'Jumlah Kel. Simulasi',
               ),
               SizedBox(height: 28.h),
+
               TypographyStyles.bodyCaptionSemiBold(
                 'Kader Khusus',
                 color: TextColors.grey900,
               ),
               SizedBox(height: 12.h),
+
               TypographyStyles.bodyCaptionSemiBold(
                 'Tutor',
                 color: TextColors.grey900,
@@ -115,7 +120,7 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
               InputFormField(
                 controller: ketrampilanController,
                 hintText: 'Masukkan jumlah',
-                label: 'Ketrampilan',
+                label: 'Keterampilan',
               ),
             ],
           ),
@@ -128,7 +133,30 @@ class PendidikanKetrampilan3Screen extends StatelessWidget {
             text: 'Lanjut',
             textColor: Colors.white,
             onPressed: () {
-              Navigator.pushNamed(context, '/pendidikan4');
+              // Ambil data sebelumnya dari halaman 1 & 2
+              final previousData = Get.arguments ?? {};
+
+              // Data input halaman ke-3
+              final currentData = {
+                'bkpKlp': klpController.text,
+                'bkpPeserta': ibuPesertaController.text,
+                'bkpApe': apeController.text,
+                'bkpSimulasi': kelSimulasiController.text,
+                'kaderTutorKf': tutorKFController.text,
+                'kaderTutorPaud': tutorPaudController.text,
+                'kaderTutorBkp': kaderBKPController.text,
+                'kaderTutorKoperasi': koperasiController.text,
+                'kaderTutorKeterampilan': ketrampilanController.text,
+              };
+
+              // Gabungkan semua data
+              final combinedData = {
+                ...previousData,
+                ...currentData,
+              };
+
+              // Navigasi ke halaman 4
+              Get.toNamed('/pendidikan4', arguments: combinedData);
             },
           ),
         ),

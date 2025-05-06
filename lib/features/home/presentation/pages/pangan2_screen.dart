@@ -5,6 +5,8 @@ import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class Pangan2Screen extends StatelessWidget {
@@ -105,7 +107,23 @@ class Pangan2Screen extends StatelessWidget {
             text: 'Review',
             textColor: Colors.white,
             onPressed: () {
-              Navigator.pushNamed(context, '/panganReview');
+              final previousData = Get.arguments ?? {};
+
+              final newData = {
+                'peternakan': peternakanController.text,
+                'perikanan': perikananController.text,
+                'warungHidup': warungHidupController.text,
+                'lumbungHidup': lumbungHidupController.text,
+                'toga': togaController.text,
+                'tanamanKeras': tanamanKerasController.text,
+              };
+
+              final combinedData = {
+                ...previousData,
+                ...newData,
+              };
+
+              Get.toNamed('/review_pangan', arguments: combinedData);
             },
           ),
         ),

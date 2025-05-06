@@ -5,6 +5,7 @@ import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class PendidikanKetrampilan4Screen extends StatelessWidget {
@@ -20,7 +21,7 @@ class PendidikanKetrampilan4Screen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBarSecondary(
         title: 'Pendidikan & Keterampilan',
-        //subtitle: 'Langkah 3 dari 5',
+        //subtitle: 'Langkah 4 dari 5',
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -28,6 +29,7 @@ class PendidikanKetrampilan4Screen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Progress Bar
               Row(
                 children: List.generate(5, (index) {
                   return Expanded(
@@ -43,23 +45,27 @@ class PendidikanKetrampilan4Screen extends StatelessWidget {
                 }),
               ),
               SizedBox(height: 32.h),
+
               TypographyStyles.bodyCaptionSemiBold(
                 'Jumlah Kader yang Sudah Dilatih',
                 color: TextColors.grey900,
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 24.h),
+
               InputFormField(
                 controller: lp3Controller,
                 hintText: 'Masukkan jumlah',
                 label: 'LP3PKK',
               ),
               SizedBox(height: 20.h),
+
               InputFormField(
                 controller: tp3Controller,
                 hintText: 'Masukkan jumlah',
                 label: 'TP3PKK',
               ),
               SizedBox(height: 20.h),
+
               InputFormField(
                 controller: damasController,
                 hintText: 'Masukkan jumlah',
@@ -76,7 +82,20 @@ class PendidikanKetrampilan4Screen extends StatelessWidget {
             text: 'Review',
             textColor: Colors.white,
             onPressed: () {
-              //Navigator.pushNamed(context, '/pendidikan3');
+              final previousData = Get.arguments ?? {};
+
+              final newData = {
+                'kaderLp3pkk': lp3Controller.text,
+                'kaderTp3pkk': tp3Controller.text,
+                'kaderDamas': damasController.text,
+              };
+
+              final combinedData = {
+                ...previousData,
+                ...newData,
+              };
+
+              Get.toNamed('/review_pendidikan', arguments: combinedData);
             },
           ),
         ),

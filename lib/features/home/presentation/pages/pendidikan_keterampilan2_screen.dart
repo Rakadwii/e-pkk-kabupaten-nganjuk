@@ -5,6 +5,7 @@ import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class PendidikanKetrampilan2Screen extends StatelessWidget {
@@ -23,7 +24,6 @@ class PendidikanKetrampilan2Screen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBarSecondary(
         title: 'Pendidikan & Keterampilan',
-        //subtitle: 'Langkah 2 dari 5',
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -47,6 +47,7 @@ class PendidikanKetrampilan2Screen extends StatelessWidget {
                 }),
               ),
               SizedBox(height: 32.h),
+
               TypographyStyles.bodyCaptionSemiBold(
                 'Paket C',
                 color: TextColors.grey900,
@@ -63,6 +64,7 @@ class PendidikanKetrampilan2Screen extends StatelessWidget {
                 hintText: 'Masukkan jumlah',
                 label: 'Warga Belajar',
               ),
+
               SizedBox(height: 28.h),
               TypographyStyles.bodyCaptionSemiBold(
                 'Paket KF',
@@ -72,14 +74,15 @@ class PendidikanKetrampilan2Screen extends StatelessWidget {
               InputFormField(
                 controller: paketKFKelController,
                 hintText: 'Masukkan jumlah',
-                label: 'Kel. Belajar',
+                label: 'Kell. Belajar',
               ),
               SizedBox(height: 20.h),
               InputFormField(
                 controller: paketKFWargaController,
                 hintText: 'Masukkan jumlah',
-                label: 'Warga Belajar',
+                label: 'Wargaa Belajar',
               ),
+
               SizedBox(height: 28.h),
               InputFormField(
                 controller: paudController,
@@ -103,7 +106,17 @@ class PendidikanKetrampilan2Screen extends StatelessWidget {
             text: 'Lanjut',
             textColor: Colors.white,
             onPressed: () {
-              Navigator.pushNamed(context, '/pendidikan3');
+              final previousData = Get.arguments ?? {};
+
+              Get.toNamed('/pendidikan3', arguments: {
+                ...previousData,
+                'paketC1': paketCKelController.text,
+                'paketC2': paketCWargaController.text,
+                'paketKF1': paketKFKelController.text,
+                'paketKF2': paketKFWargaController.text,
+                'paudSejenis': paudController.text,
+                'tamanBacaan': tamanBacaanController.text,
+              });
             },
           ),
         ),

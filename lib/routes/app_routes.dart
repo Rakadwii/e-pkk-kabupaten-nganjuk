@@ -16,7 +16,8 @@ import 'package:e_pkk_nganjuk/features/home/presentation/pages/pengembangan_kehi
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/pengembangan_kehidupan_berkoprasi2_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/perencanaan_sehat_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/perumahan_screen.dart';
-// import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_pendidikanscreen.dart';
+import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_pangan_screen.dart';
+import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_pendidikanscreen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/riwayat_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/sandang_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/ubah_sandi_screen.dart';
@@ -93,9 +94,15 @@ class AppRoutes {
     GetPage(name: Routes.INFO_AKUN, page: () => InformasiAkunScreen()),
     GetPage(name: Routes.UBAH_SANDI, page: () => UbahKataSandiScreen()),
     GetPage(name: Routes.UPLOAD_GALERI, page: () => UploadGaleriScreen()),
-    // GetPage(
-    //     name: Routes.REVIEW_PENDIDIKAN,
-    //     page: () => ReviewLaporanPendidikanScreen()),
+    GetPage(
+      name: Routes.REVIEW_PANGAN,
+      page: () => ReviewLaporanPangannScreen(),
+    ),
+    GetPage(
+      name: Routes.REVIEW_PENDIDIKAN,
+      page: () => ReviewLaporanPendidikanScreen(),
+    )
+
     // GetPage(
     //   name: Routes.KADER_POKJA1,
     //   page: () => KaderPokja1Screen(),
