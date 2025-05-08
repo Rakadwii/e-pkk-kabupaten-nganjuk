@@ -5,6 +5,7 @@ import 'package:e_pkk_nganjuk/_core/component/button/button_fill.dart';
 import 'package:e_pkk_nganjuk/_core/component/form/input_form_field.dart';
 import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/commons/constants/typography.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class KelestarianLingkungan2Screen extends StatelessWidget {
@@ -76,7 +77,20 @@ class KelestarianLingkungan2Screen extends StatelessWidget {
             text: 'Review',
             textColor: Colors.white,
             onPressed: () {
-              // Navigator.pushNamed(context, '/kelestarianReview');
+              final previousData = Get.arguments ?? {};
+
+              final newData = {
+                'pdam': pdamController.text,
+                'sumur': sumurController.text,
+                'lainnya': lainnyaController.text,
+              };
+
+              final combinedData = {
+                ...previousData,
+                ...newData,
+              };
+
+              Get.toNamed('/review_kelestarian', arguments: combinedData);
             },
           ),
         ),

@@ -2,7 +2,6 @@ import 'package:e_pkk_nganjuk/_core/component/button/card_button_actions.dart';
 import 'package:e_pkk_nganjuk/commons/constants/colors.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/components/card_pengumuman.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/components/widget_carousel_banner.dart';
-import 'package:e_pkk_nganjuk/features/home/presentation/components/widget_text_pengumuman.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -19,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late String role;
+  late String role = 'User';
   String? roleBidang;
   String? fullName = "User";
 
@@ -33,11 +32,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> loadUserData() async {
     final user = await PreferencesService.getUser();
+    if (!mounted) return;
     if (user != null) {
       setState(() {
         fullName = user.fullName;
         role = user.role?.name ?? 'Tidak diketahui';
         roleBidang = user.organization?.name;
+      });
+    } else {
+      setState(() {
+        role = 'Tidak diketahui';
+        roleBidang = '';
       });
     }
   }
@@ -49,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     switch (index) {
       case 0:
-        // Sudah di Beranda
         break;
       case 1:
         Get.toNamed(Routes.RIWAYAT);
@@ -125,11 +129,26 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       ),
                       SizedBox(height: 32.h),
-                      WidgetTextPengumuman(
-                        firstText: 'Pengumuman',
-                        secondText: 'Daftar pengumuman dari pusat',
-                        threeText: 'Lihat semua',
-                        svgIcon: 'assets/icons/ic_arrow_right.svg',
+                      GestureDetector(
+                        onTap: () => Get.toNamed(Routes.PENGUMUMAN),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Pengumuman',
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold)),
+                                Text('Daftar pengumuman dari pusat',
+                                    style: TextStyle(fontSize: 12.sp)),
+                              ],
+                            ),
+                            Icon(Icons.arrow_forward_ios,
+                                size: 16.sp, color: Colors.grey),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 16.h),
                       ListView.builder(

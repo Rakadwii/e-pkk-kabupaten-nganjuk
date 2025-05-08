@@ -14,12 +14,15 @@ import 'package:e_pkk_nganjuk/features/home/presentation/pages/pendidikan_ketera
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/pendidikan_keterampilan4_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/pengembangan_kehidupan_berkoprasi1_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/pengembangan_kehidupan_berkoprasi2_screen.dart';
+import 'package:e_pkk_nganjuk/features/home/presentation/pages/pengumuman_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/perencanaan_sehat_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/perumahan_screen.dart';
+import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_kelestarian_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_pangan_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/review_laporan_pendidikanscreen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/riwayat_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/sandang_screen.dart';
+import 'package:e_pkk_nganjuk/features/home/presentation/pages/tentang_kami_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/ubah_sandi_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/upload_galeri_screen.dart';
 import 'package:e_pkk_nganjuk/features/home/presentation/pages/upload_laporan.dart';
@@ -90,6 +93,7 @@ class AppRoutes {
         name: Routes.PERENCANAAN_SEHAT, page: () => PerencanaanSehatScreen()),
     GetPage(name: Routes.KADER_POKJA3, page: () => KaderPokja3Screen()),
     GetPage(name: Routes.RIWAYAT, page: () => RiwayatScreen()),
+    GetPage(name: Routes.PENGUMUMAN, page: () => PengumumanScreen()),
     GetPage(name: Routes.AKUN, page: () => AkunScreen()),
     GetPage(name: Routes.INFO_AKUN, page: () => InformasiAkunScreen()),
     GetPage(name: Routes.UBAH_SANDI, page: () => UbahKataSandiScreen()),
@@ -101,6 +105,14 @@ class AppRoutes {
     GetPage(
       name: Routes.REVIEW_PENDIDIKAN,
       page: () => ReviewLaporanPendidikanScreen(),
+    ),
+    GetPage(
+      name: Routes.REVIEW_KELESTARIAN,
+      page: () => ReviewLaporanKelestarianScreen(),
+    ),
+    GetPage(
+      name: Routes.TENTANG,
+      page: () => TentangKamiScreen(),
     )
 
     // GetPage(
@@ -149,4 +161,5 @@ class Routes {
   static const UBAH_SANDI = '/ubah_sandi';
   static const INFO_AKUN = '/info_akun';
   static const UPLOAD_GALERI = '/upload_galeri';
+  static const REVIEW_KELESTARIAN = '/review_kelestarian';
 }
